@@ -1,2 +1,0 @@
-# RPSLS
-RPSLS project

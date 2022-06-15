@@ -1,21 +1,40 @@
 from player import Player
-import random
+from utility import try_parse_int
 from time import sleep
 
 class Human(Player):
 
     def __init__(self):
         super().__init__()
-        self.score = 0
-        self.name = str(input('What is your gaming name? Please type your answer here: ' ))
-        print('Welcome to the game,{self.name.str.input}!')
+        
+    def set_name(self):
+        username = input('What is your name?')
+        print(f'Welcome to the game,{username}!')
+        return username
 
-    def choose_gesture(self, player_gesture):
-        print('')
-        self.gesture_list = int(input(0,4))
-        if self.gesture_list > 4:
-            self.choose_gesture()
-        gesture_list = ['Rock', 'Paper', 'Scissors', 'Lizard', 'Spock']
+    def choose_gesture(self):
+        self.player_gesture = try_parse_int(print(f'''
+        Select which gesture you would like to use: 
+1) Rock
+2) Paper
+3) Scissors
+4) Lizard
+5) Spock
+        '''))
+
+        match self.player_gesture:
+            case 1:
+                self.selected_guesture = 'Rock'
+            case 2:
+                self.selected_guesture = 'Paper'
+            case 3:
+                self.selected_guesture = 'Scissors'
+            case 4:
+                self.selected_guesture = 'Lizard'
+            case 5:
+                self.selected_guesture = 'Spock'
+
         sleep(1)
-        print(f'{self.name} has picked {gesture_list[int(self.gesture_list)]}')
-        self.player_gesture = gesture_list[int(self.gesture_list)]
+        print(
+            f'{self.name} has picked {self.selected_guesture}')
+        

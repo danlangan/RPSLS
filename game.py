@@ -1,144 +1,114 @@
 from ai import Ai
 from human import Human
+from utility import try_parse_int
 from time import sleep
 
 print('Welcome to RPSLS! We are excited to get the game started!')
 
 class Game:
     def __init__(self):
-        pass
+        self.player_one
+        self.player_two
         
     def print_options(self):
-        print('Scissors cut paper')
+        print('Rock crushes Scissors')
         sleep(1)
-        print('Paper cuts rock')
+        print('Scissors cuts Paper')
         sleep(1)
-        print('Rock crushes lizard')
+        print('Paper covers Rock')
         sleep(1)
-        print('Lizard poisons spock')
+        print('Rock crushes Lizard')
         sleep(1)
-        print('Spock vaporizes rock')
+        print('Lizard poisons Spock')
         sleep(1)
-        print('Rock crushes scissors')
+        print('Spock smashes Scissors')
+        sleep(1)
+        print('Scissors decapitates Lizard')
+        sleep(1)
+        print('Lizard eats Paper')
+        sleep(1)
+        print('Paper disproves Spock')
+        sleep(1)
+        print('Spock vaporizes Rock')
+        sleep(1)
 
-    def player_score(self, player_one_score, player_two_score):
-        self.player_one_score = 0
-        self.player_two_score = 0
-        
-        int.input(print('How many players will be playing the game today? Select either one or two, and select 3 for a suprise!:' ))
+    def choose_game_type(self):
+        user_selection = try_parse_int(print(f'''
+Select the type of game that you would like to play from the following options:
 
-    def players_in_game(self, player_one, player_two, active_players):
-        self.active_players = int.input(print('How many players will be playing the game today? Choose between 0 and 2: '))
-        while self.active_players <= 2:
-            if self.active_players == 0:
-                self.player_one = Ai()
-                self.player_two = Ai()
-            elif self.active_players == 1:
+1) Single Player Game
+2) Two Player Game
+3) AI Bot War
+'''))
+
+        match user_selection:
+            case 1:
                 self.player_one = Human()
                 self.player_two = Ai()
-            elif self.active_players == 2:
+            case 2:
                 self.player_one = Human()
                 self.player_two = Human()
-            else:
-                self.active_players > 2
-                print('You have made an incorrect choice, you will now witness two AI bots, Stuart and Weldon, duke it out. Enjoy!')
+            case 3:
                 self.player_one = Ai()
                 self.player_two = Ai()
 
+    def player_score(self):
+        self.player_one_score = self.player_one.score
+        self.player_two_score = self.player_two.score
+
     def player_move(self):
-        self.game_score = print(f'{self.player_one_score} is the score for player one and {self.player_two_score} is the score for player two')
+        self.game_score = print(f"{self.player_one_score} is {self.player_one.name}'s game score AND {self.player_two_score} is {self.player_two.name}'s game score.")
         self.print_options()
         self.player_one.choose_gesture()
         self.print_options()
         self.player_two.choose_gesture()
         self.player_one.player_gesture
         self.player_two.player_gesture
-        self.gesture_choices()
+        self.compare_gestures()
 
-    def gesture_choices(self):
-        self.player_one.player_gesture = int(input('Select 0 for Scissors, 1 for Paper, 2 for Rock, 3 for Lizard, and 4 for Spock. Which choice would you like to make? Enter your numnber here: '))
-        self.player_two.player_gesture = int(input('Select 0 for Scissors, 1 for Paper, 2 for Rock, 3 for Lizard, and 4 for Spock. Which choice would you like to make? Enter your numnber here: '))
+    def choose_gestures(self):
+        self.player_one.choose_gesture()
+        self.player_two.choose_gesture()
 
-        if int(input(self.player_one.player_gesture)) == 0 and int(input(self.player_two.player_gesture)) == 2:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 2 and int(input(self.player_two.player_gesture)) == 0 or 3:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 1 and int(input(self.player_two.player_gesture)) == 0:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 0 and int(input(self.player_two.player_gesture)) == 1:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 3 and int(input(self.player_two.player_gesture)) == 4:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 4 and int(input(self.player_two.player_gesture)) == 2:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 0 or 3 and int(input(self.player_two.player_gesture)) == 2:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 0 and int(input(self.player_two.player_gesture)) == 1:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 4 and int(input(self.player_two.player_gesture)) == 3:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 2 and int(input(self.player_two.player_gesture)) == 4:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 1 and int(input(self.player_two.player_gesture)) == 2:
-            print('Player one wins!')
-            self.player_one_score += 1
-
-        elif int(input(self.player_one.player_gesture)) == 2 and int(input(self.player_two.player_gesture)) == 1:
-            print('Player two wins!')
-            self.player_two_score += 1
-
-     ## non scoring gesture choices are coming up next
-
-        elif int(input(self.player_one.player_gesture)) == 0 and int(input(self.player_two.player_gesture)) == 3 or 4:
-            print('No damage has been done, please select a new gesture and try again!')
-            sleep(1)
-
-        elif int(input(self.player_one.gesture_choices)) == 3 or 4 and int(input(self.player_two.gesture_choices)) == 0:
-            print('No damage has been done, please select a new gesture and try again!')
-            sleep(1)
-
-        elif int(input(self.player_one.player_gesture)) == 0 or 1 and int(input(self.player_two.player_gesture)) == 3:
-            print('No damage has been done, please select a new gesture and try again!')
-            sleep(1)
-
-        elif int(input(self.player_one.player_gesture)) == 3 and int(input(self.player_two.player_gesture)) == 0 or 1:
-            print('No damage has been done, please select a new gesture and try again!')
-            sleep(1)
-
-        else: 
-            int(input(self.player_one.player_gesture)) == int(input(self.player_two.player_gesture))
-            print('Both players have made the same choice, choose again!')
+    def compare_gestures(self):
+        gesture_1 = self.player_one.player_gesture
+        gesture_2 = self.player_two.player_gesture
+        if gesture_1 == gesture_2:
+            print("It's a tie!")
+        elif gesture_1 == 'Rock':
+            if gesture_2 == 'Scissors' or gesture_2 == 'Lizard':
+                self.player_one.score_point()
+            else:
+                self.player_two.score_point()
+        elif gesture_1 == 'Scissors':
+            if gesture_2 == 'Paper' or gesture_2 == 'Lizard':
+                self.player_one.score_point()
+            else:
+                self.player_two.score_point()
+        elif gesture_1 == 'Paper':
+            if gesture_2 == 'Rock' or gesture_2 == 'Spock':
+                self.player_one.score_point()
+            else:
+                self.player_two.score_point()
+        elif gesture_1 == 'Lizard':
+            if gesture_2 == 'Paper' or gesture_2 == 'Spock':
+                self.player_one.score_point()
+            else:
+                self.player_two.score_point()
+        elif gesture_1 == 'Spock':
+            if gesture_2 == 'Scissors' or gesture_2 == 'Rock':
+                self.player_one.score_point()
+            else:
+                self.player_two.score_point()
 
     def run_game(self):
-        self.players_in_game()
-        self.player_score()
-        while self.player_one_score < 2 and self.player_two_score < 2:
-            self.player_move()
-            self.gesture_choices()
-        if self.player_one_score == 2 or self.player_two_score == 2:
+        self.choose_game_type()
+        
+        while self.player_one.score < 3 and self.player_two.score < 3:
+            self.choose_gestures()
+            self.compare_gestures()
+            self.declare_winner()
+        
 
-            pass
-
-        print('Welcome to RPSLS! We are excited to get the game started')
         
 
