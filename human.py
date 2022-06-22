@@ -13,14 +13,14 @@ class Human(Player):
         return username
 
     def choose_gesture(self):
-        self.player_gesture = try_parse_int(print(f'''
+        self.player_gesture = try_parse_int(f'''
         Select which gesture you would like to use: 
 1) Rock
 2) Paper
 3) Scissors
 4) Lizard
 5) Spock
-        '''))
+        ''')
 
         match self.player_gesture:
             case 1:

@@ -7,7 +7,7 @@ print('Welcome to RPSLS! We are excited to get the game started!')
 
 class Game:
     def __init__(self):
-        pass
+        self
         
     def print_options(self):
         print('Rock crushes Scissors')
@@ -32,34 +32,32 @@ class Game:
         sleep(1)
 
     def choose_game_type(self):
-        user_selection = try_parse_int(print(f'''
+        user_selection = try_parse_int(f'''
 Select the type of game that you would like to play from the following options:
 
 1) Single Player Game
 2) Two Player Game
 3) AI Bot War
-'''))
+''')
 
-        match user_selection:
-            case 1:
-                self.player_one = Human()
-                self.player_two = Ai()
-            case 2:
+        if user_selection == 1:
+            self.player_one = Human()
+            self.player_two = Ai()
+
+        elif user_selection == 2:
                 self.player_one = Human()
                 self.player_two = Human()
-            case 3:
+
+        elif user_selection == 3:
                 self.player_one = Ai()
                 self.player_two = Ai()
 
-        self.player_one
-        self.player_two
-
     def player_score(self):
-        self.player_one_score = self.player_one.score
-        self.player_two_score = self.player_two.score
+        self.player_one.score
+        self.player_two.score
 
     def player_move(self):
-        self.game_score = print(f"{self.player_one_score} is {self.player_one.name}'s game score AND {self.player_two_score} is {self.player_two.name}'s game score.")
+        self.game_score = print(f"{self.player_one.score} is {self.player_one.name}'s game score AND {self.player_two.score} is {self.player_two.name}'s game score.")
         self.print_options()
         self.player_one.choose_gesture()
         self.print_options()
@@ -68,13 +66,13 @@ Select the type of game that you would like to play from the following options:
         self.player_two.player_gesture
         self.compare_gestures()
 
-    def choosen_gestures(self):
+    def choose_gestures(self):
         self.player_one.choose_gesture()
         self.player_two.choose_gesture()
 
     def compare_gestures(self):
-        gesture_1 = self.player_one.player_gesture
-        gesture_2 = self.player_two.player_gesture
+        gesture_1 = self.player_one.selected_gesture
+        gesture_2 = self.player_two.selected_gesture
         if gesture_1 == gesture_2:
             print("It's a tie!")
         elif gesture_1 == 'Rock':
@@ -105,20 +103,18 @@ Select the type of game that you would like to play from the following options:
 
     def declare_winner(self):
 
-        if self.player_one_score == 3:
-            print(f'{self.player_one} wins the game!')
+        if self.player_one.score == 3:
+            print(f'{self.player_one.name} wins the game!')
+        elif self.player_two.score == 3:
+            print(f'{self.player_two.name} wins the game!')
 
-        if self.player_two_score == 3:
-            print(f'{self.player_two} wins the game!')
 
     def run_game(self):
         self.choose_game_type()
-        
+        self.player_score()
+
         while self.player_one.score < 3 and self.player_two.score < 3:
             self.choose_gestures()
             self.compare_gestures()
+        else:
             self.declare_winner()
-        
-
-        
-
