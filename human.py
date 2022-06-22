@@ -8,7 +8,9 @@ class Human(Player):
         super().__init__()
         
     def set_name(self):
-        pass
+        username = input('What is your name?')
+        print(f'Welcome to the game,{username}!')
+        return username
 
     def choose_gesture(self):
         self.player_gesture = try_parse_int(print(f'''
@@ -22,17 +24,17 @@ class Human(Player):
 
         match self.player_gesture:
             case 1:
-                self.selected_guesture = 'Rock'
+                self.selected_gesture = 'Rock'
             case 2:
-                self.selected_guesture = 'Paper'
+                self.selected_gesture = 'Paper'
             case 3:
-                self.selected_guesture = 'Scissors'
+                self.selected_gesture = 'Scissors'
             case 4:
-                self.selected_guesture = 'Lizard'
+                self.selected_gesture = 'Lizard'
             case 5:
-                self.selected_guesture = 'Spock'
+                self.selected_gesture = 'Spock'
 
         sleep(1)
         print(
-            f'{self.name} has picked {self.selected_guesture}')
+            f'{self.name} has picked {self.selected_gesture}')
         

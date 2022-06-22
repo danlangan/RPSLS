@@ -68,7 +68,7 @@ Select the type of game that you would like to play from the following options:
         self.player_two.player_gesture
         self.compare_gestures()
 
-    def choose_gestures(self):
+    def choosen_gestures(self):
         self.player_one.choose_gesture()
         self.player_two.choose_gesture()
 
