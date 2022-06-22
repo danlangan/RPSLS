@@ -7,8 +7,7 @@ print('Welcome to RPSLS! We are excited to get the game started!')
 
 class Game:
     def __init__(self):
-        self.player_one
-        self.player_two
+        pass
         
     def print_options(self):
         print('Rock crushes Scissors')
@@ -51,6 +50,9 @@ Select the type of game that you would like to play from the following options:
             case 3:
                 self.player_one = Ai()
                 self.player_two = Ai()
+
+        self.player_one
+        self.player_two
 
     def player_score(self):
         self.player_one_score = self.player_one.score
@@ -100,6 +102,14 @@ Select the type of game that you would like to play from the following options:
                 self.player_one.score_point()
             else:
                 self.player_two.score_point()
+
+    def declare_winner(self):
+
+        if self.player_one_score == 3:
+            print(f'{self.player_one} wins the game!')
+
+        if self.player_two_score == 3:
+            print(f'{self.player_two} wins the game!')
 
     def run_game(self):
         self.choose_game_type()

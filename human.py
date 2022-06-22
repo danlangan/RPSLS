@@ -8,9 +8,7 @@ class Human(Player):
         super().__init__()
         
     def set_name(self):
-        username = input('What is your name?')
-        print(f'Welcome to the game,{username}!')
-        return username
+        pass
 
     def choose_gesture(self):
         self.player_gesture = try_parse_int(print(f'''
