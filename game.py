@@ -114,6 +114,7 @@ Select the type of game that you would like to play from the following options:
         self.player_score()
 
         while self.player_one.score < 3 and self.player_two.score < 3:
+            self.print_options()
             self.choose_gestures()
             self.compare_gestures()
         else:
